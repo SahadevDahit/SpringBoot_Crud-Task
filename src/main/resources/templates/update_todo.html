@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Todos</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<style>
+		* {
+			padding: 0%;
+			margin: 0%;
+			box-sizing: border-box;
+		}
+
+		form {
+			border: 1px solid #000;
+
+			padding: 20px;
+			width: 300px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 class="text-center py-3">My Todos</h1>
+	<div class="container">
+		<form class="w-50 mx-auto" th:action="@{/saveTodo}" method="POST" th:object="${todoForm}">
+			<input type="hidden" th:field="*{id}" />
+			<div class="mb-3">
+				<label for="title" class="form-label">Title</label>
+				<input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Enter title">
+			</div>
+
+			<div class="mb-3">
+				<label for="status" class="form-label">Status</label>
+				<select class="form-select" id="status" th:field="*{status}">
+					<option value="pending">pending</option>
+					<option value="progress">progress</option>
+					<option value="completed">completed</option>
+				</select>
+			</div>
+
+			<div class="mb-3">
+				<label for="description" class="form-label">Description</label>
+				<textarea class="form-control" id="description" th:field="*{description}" rows="4"
+					placeholder="Enter description"></textarea>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Update</button>
+		</form>
+		<hr>
+		<a th:href="@{/}"> Back to Home</a>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>
